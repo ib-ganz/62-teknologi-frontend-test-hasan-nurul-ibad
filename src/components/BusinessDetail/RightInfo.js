@@ -7,6 +7,7 @@ import PermPhoneMsgIcon from "@mui/icons-material/PermPhoneMsg";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import React, {useEffect, useRef, useState} from "react";
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import {useResponsive} from "../../utils/UseResponsive";
 
 const RightInfo = ({business, setShowModalDirection}) => {
 
@@ -14,6 +15,7 @@ const RightInfo = ({business, setShowModalDirection}) => {
     const [initialWidth, setInitialWidth] = useState(0)
     const [stickyStyle, setStickyStyle] = useState({})
     const rightRef = useRef(null)
+    const res = useResponsive()
 
     useEffect(() => {
         const onScroll = () => setOffset(window.pageYOffset)
@@ -34,12 +36,14 @@ const RightInfo = ({business, setShowModalDirection}) => {
     }, [rightRef])
 
     useEffect(() => {
-        setStickyStyle(offset < 400 ? {} : {
-            position: 'fixed',
-            top: 16 + 77,
-            width: initialWidth,
-            display: 'block',
-        })
+        if (!res.isMobile) {
+            setStickyStyle(offset < 400 ? {} : {
+                position: 'fixed',
+                top: 16 + 77,
+                width: initialWidth,
+                display: 'block',
+            })
+        }
     }, [offset, initialWidth])
 
     return (

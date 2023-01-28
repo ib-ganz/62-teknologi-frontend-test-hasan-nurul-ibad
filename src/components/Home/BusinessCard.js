@@ -40,7 +40,7 @@ const BusinessCard = ({data, openDirection}) => {
     }
 
     return (
-        <Col lg={4} md={6} sm={6}>
+        <Col lg={4} md={6} sm={6} xs={6}>
             <VerticalBox style={{width: '100%', marginBottom: 30}}>
                 <div
                     style={{

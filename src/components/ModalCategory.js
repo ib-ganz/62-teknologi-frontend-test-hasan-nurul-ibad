@@ -3,15 +3,18 @@ import HorizontalBox from "./HorizontalBox";
 import Spacer from "./Spacer";
 import CloseIcon from '@mui/icons-material/Close';
 import VerticalBox from "./VerticalBox";
+import {useResponsive} from "../utils/UseResponsive";
 
 const ModalCategory = ({open, close, categories, setCategories}) => {
+
+    const res = useResponsive()
 
     const style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 600,
+        width: res.isMobile ? 'calc(100% - 30px)' : 600,
         background: 'white',
         boxShadow: 24,
         p: 4,

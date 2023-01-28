@@ -14,10 +14,12 @@ import LocationAndHours from "../components/BusinessDetail/LocationAndHours"
 import RecommendedReviews from "../components/BusinessDetail/RecommendedReviews"
 import Hr from "../components/Hr"
 import RightInfo from "../components/BusinessDetail/RightInfo";
+import {useResponsive} from "../utils/UseResponsive";
 
 const BusinessDetail = () => {
 
     const {id} = useParams()
+    const res = useResponsive()
 
     const [business, setBusiness] = useState(null)
     const [showModalDirection, setShowModalDirection] = useState(false)
@@ -102,20 +104,41 @@ const BusinessDetail = () => {
             </div>
             <Container fluid className={'mt-4'}>
                 <Row>
-                    <Col sm={12} md={6} lg={8}>
-                        {
-                            business && <>
-                                <LocationAndHours business={business} setShowModalDirection={setShowModalDirection}/>
-                                <Hr style={{marginTop: 24, marginBottom: 24}}/>
-                                <RecommendedReviews business={business}/>
+                    {
+                        res.isMobile ?
+                            <>
+                                <Col sm={12} md={6} lg={4} className={'mb-2'}>
+                                    {
+                                        business && <RightInfo business={business} setShowModalDirection={setShowModalDirection}/>
+                                    }
+                                </Col>
+                                <Col sm={12} md={6} lg={8}>
+                                    {
+                                        business && <>
+                                            <LocationAndHours business={business} setShowModalDirection={setShowModalDirection}/>
+                                            <Hr style={{marginTop: 24, marginBottom: 24}}/>
+                                            <RecommendedReviews business={business}/>
+                                        </>
+                                    }
+                                </Col>
+                            </> :
+                            <>
+                                <Col sm={12} md={6} lg={8}>
+                                    {
+                                        business && <>
+                                            <LocationAndHours business={business} setShowModalDirection={setShowModalDirection}/>
+                                            <Hr style={{marginTop: 24, marginBottom: 24}}/>
+                                            <RecommendedReviews business={business}/>
+                                        </>
+                                    }
+                                </Col>
+                                <Col sm={12} md={6} lg={4}>
+                                    {
+                                        business && <RightInfo business={business} setShowModalDirection={setShowModalDirection}/>
+                                    }
+                                </Col>
                             </>
-                        }
-                    </Col>
-                    <Col sm={12} md={6} lg={4}>
-                        {
-                            business && <RightInfo business={business} setShowModalDirection={setShowModalDirection}/>
-                        }
-                    </Col>
+                    }
                 </Row>
             </Container>
             <ModalDirection

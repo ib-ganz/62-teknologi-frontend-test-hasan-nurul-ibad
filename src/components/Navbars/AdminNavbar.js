@@ -17,16 +17,6 @@
 */
 import {Link} from "react-router-dom";
 import {
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    Form,
-    FormGroup,
-    InputGroupAddon,
-    InputGroupText,
-    Input,
-    InputGroup,
     Navbar,
     Nav,
     Container,
@@ -36,7 +26,7 @@ import {
 const AdminNavbar = (props) => {
     return (
         <>
-            <Navbar className="navbar-top navbar-dark bg-gradient-info position-fixed" expand="md" id="navbar-main">
+            <Navbar className="navbar-top navbar-dark bg-gradient-info position-fixed" expand="xs" id="navbar-main">
                 <Container fluid>
                     <Link
                         className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
@@ -44,7 +34,7 @@ const AdminNavbar = (props) => {
                     >
                         {props.brandText}
                     </Link>
-                    <Nav className="align-items-center d-none d-md-flex" navbar>
+                    <Nav className="align-items-center d-flex" navbar>
                         <Media className="align-items-center">
                             <img
                                 height={35.99}
