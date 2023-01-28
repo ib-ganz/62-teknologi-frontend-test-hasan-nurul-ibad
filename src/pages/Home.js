@@ -15,6 +15,8 @@ import Map from "../components/Map";
 import {Fab} from "@material-ui/core";
 import {useResponsive} from "../utils/UseResponsive";
 import ModalMap from "../components/ModalMap";
+import HorizontalBox from "../components/HorizontalBox";
+import Spacer from "../components/Spacer";
 
 // untuk demo saja
 export const dummyLocations = [
@@ -162,13 +164,17 @@ const Home = () => {
                                             ))
                                         }
                                     </Row>
-                                    <Pagination
-                                        count={!totalData ? 0 : Math.ceil(totalData / rowPerPage)}
-                                        page={page}
-                                        onChange={(e, pageNumber) => setPage(pageNumber)}
-                                        showFirstButton={false}
-                                        showLastButton={false}
-                                    />
+                                    <HorizontalBox className={'mb-5'}>
+                                        <Spacer/>
+                                        <Pagination
+                                            count={!totalData ? 0 : Math.ceil(totalData / rowPerPage)}
+                                            page={page}
+                                            onChange={(e, pageNumber) => setPage(pageNumber)}
+                                            showFirstButton={false}
+                                            showLastButton={false}
+                                        />
+                                        <Spacer/>
+                                    </HorizontalBox>
                                 </VerticalBox>
                             </Col>
                             <Col sm={12} md={4}>
