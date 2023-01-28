@@ -4,15 +4,18 @@ import HorizontalBox from "./HorizontalBox";
 import Spacer, {Expanded} from "./Spacer";
 import CloseIcon from "@mui/icons-material/Close";
 import {useEffect, useState} from "react";
+import {useResponsive} from "../utils/UseResponsive";
 
 const ModalDirection = ({open, close, data, coordinate}) => {
+
+    const res = useResponsive()
 
     const style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 600,
+        width: res.isMobile ? 'calc(100% - 30px)' : 600,
         background: 'white',
         boxShadow: 24,
         p: 4,
@@ -48,12 +51,16 @@ const ModalDirection = ({open, close, data, coordinate}) => {
                         />
                     </HorizontalBox>
                     <Expanded>
-                        <div className="google-map-code">
-                            <iframe
-                                src={url}
-                                width="536" height="450" allowFullScreen="" loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"/>
-                        </div>
+                        <HorizontalBox style={{overflow: 'hidden'}}>
+                            <Spacer/>
+                            <div className="google-map-code">
+                                <iframe
+                                    src={url}
+                                    width="536" height="450" allowFullScreen="" loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"/>
+                            </div>
+                            <Spacer/>
+                        </HorizontalBox>
                     </Expanded>
                     <HorizontalBox className={'mt-2'}>
                         <Spacer/>
